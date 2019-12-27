@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<style>
+		td{
+			text-align:center;
+		}
+		a{
+			text-decoration:none;
+			font-size:12px;
+			color:#333;
+		}
+		.inputBox{
+			width:200px;
+			height:30px;
+			border:1px solid #333;
+			border-radius:5px;
+			overflow:hidden;
+		}
+		.inputBox input{
+			width:190px;
+			height:30px;
+			font-size:16px;
+			padding:0;
+			margin:0;
+			padding-left:10px;
+			outline:none;
+			border:none;
+			background:rgba(0,0,0,0.3);
+		}
+	</style>
+</head>
+<body>
+	<form action="login.php" method="post">
+		<table align="center" border="0" cellspacing="0" cellpadding="10" >
+			<tr>
+				<th colspan="2" style="font-size:22px;">登录页</th>
+			</tr>
+			<tr>
+				<td>用户名:</td>
+				<td>
+					<div class="inputBox">
+						<input type="text" name="UserName">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>密码:</td>
+				<td>
+					<div class="inputBox">
+						<input type="password" name="PassWord">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="登录">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align:right;">
+					<a href="register.html">没有账户,赶快去注册!</a>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>SHOP 管理中心 - 类型管理 </title>
+<base href="__PUBLIC__/static/" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="/admin/Goods/type_add">新建商品类型</a></span>
+<span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品类型 </span>
+<div style="clear:both"></div>
+</h1>
+
+<form method="post" action="" name="listForm">
+<!-- start goods type list -->
+<div class="list-div" id="listDiv">
+
+	<table width="100%" cellpadding="3" cellspacing="1" id="listTable">
+		<tbody>
+			<tr>
+				<th>商品类型名称</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+            {foreach $data as $v}
+			<tr>
+				<td class="first-cell"><span onclick="javascript:listTable.edit(this, 'edit_type_name', 1)">{$v.cat_name}</span></td>
+				<td align="center">
+                    <img class="putaway" ip = "{$v.id}" is_sale="{$v.is_sale}" src="images/{if condition='$v.is_sale==1'}yes{else/}no{/if}.gif" onclick="">
+                </td>
+				<td align="center">
+				  <a href="/admin/Goods/type_edit?ip={$v.id}" title="编辑">编辑</a> |
+				  <a href="javascript:js_method()" class="delBtn" ip='{$v.id}' is_sale = "{$v.is_sale}" title="移除">移除</a>
+				</td>
+			</tr>
+            {/foreach}
+      <tr>
+      <td align="right" nowrap="true" colspan="6" style="background-color: rgb(255, 255, 255);">
+            <!-- $Id: page.htm 14216 2008-03-10 02:27:21Z testyang $ -->
+            <div id="turn-page">
+        总计  <span id="totalRecords">10</span>
+        个记录分为 <span id="totalPages">1</span>
+        页当前第 <span id="pageCurrent">1</span>
+        页，每页 <input type="text" size="3" id="pageSize" value="10" onkeypress="return listTable.changePageSize(event)">
+        <span id="page-link">
+          <a href="javascript:listTable.gotoPageFirst()">第一页</a>
+          <a href="javascript:listTable.gotoPagePrev()">上一页</a>
+          <a href="javascript:listTable.gotoPageNext()">下一页</a>
+          <a href="javascript:listTable.gotoPageLast()">最末页</a>
+          <select id="gotoPage" onchange="listTable.gotoPage(this.value)">
+            <option value="1">1</option>          </select>
+        </span>
+      </div>
+      </td>
+    </tr>
+  </tbody></table>
+
+</div>
+<!-- end goods type list -->
+</form>
+
+<div id="footer">版权所有</div>
+
+</body>
+<script src="js/jQuery-3.4.0.js"></script>
+<script>
+    $('.delBtn').click(function(){
+        var ip = $(this).attr('ip')
+        var is_sale = $(this).attr('is_sale')
+
+        $.ajax({
+            url:'/admin/Goods/type_del',
+            //             模块  控制器 方法
+            type:'post',
+            dataType:'json',
+            data:{
+                "ip":ip,
+                "is_sale":is_sale
+            },
+            success:(res)=>{
+                if (res.error_code == 1) {
+                    alert(res.error_msg)
+                }else{
+                    alert(res.error_msg)
+                    // $(".delBtn[ip="+ip+"]").parents('tr').remove();
+                    $(this).parents('tr').remove();
+                }
+            },
+            error:function(){
+                
+            }
+        })
+    })
+
+    $(".putaway").click(function(){
+        var ip = $(this).attr('ip');
+        $.ajax({
+            url:'/admin/Goods/type_putaway',
+            type:'POST',
+            dataType:'json',
+            data:{ip},
+            success:function(res){
+                location.href = '/admin/Goods/type_list'
+                alert(res.error_msg)
+            }
+        })
+    })
+</script>
+</html>

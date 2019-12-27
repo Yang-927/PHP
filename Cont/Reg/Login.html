@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录页面</title>
+	<style>
+		body{
+			margin:0;
+			padding:0;
+		}
+		ul,li{
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		td{
+			text-align:center;
+		}
+		a{
+			text-decoration:none;
+			font-size:12px;
+			color:#333;
+		}
+		#cont {
+			width:500px;
+			height:350px;
+			margin:0 auto;
+			border:1px solid #333;
+			padding-top:50px;
+			background:url("img/Curry1.jpg") no-repeat 100%;
+		}
+		.inputBox{
+			width:200px;
+			height:30px;
+			border:1px solid #333;
+			border-radius:5px;
+			overflow:hidden;
+		}
+		.inputBox input{
+			width:190px;
+			height:30px;
+			font-size:16px;
+			padding:0;
+			margin:0;
+			padding-left:10px;
+			outline:none;
+			border:none;
+			background:rgba(0,0,0,0.3);
+		}
+		.list{
+			width:300px;
+			height:50px;
+			margin:0 auto;
+			background: #333;
+			position:relative;
+			border-radius:3px;
+		}
+		.list li {
+			width:150px;
+			height:50px;
+			overflow:hidden;
+			float:left;
+		}
+		.list li .title{
+			text-align: center;
+			line-height:50px;
+			font-size:30px;
+			color:#fff;
+			cursor:pointer;
+		}
+		.list li .cont{
+			width:300px;
+			position:absolute;
+			margin-top:20px;
+			left:0;
+		}
+		.registerCont{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="cont">
+		<ul class="list">
+			<li>
+				<div class="loginBox title" style = "background:#f00;color:#000;">登录</div>
+				<div class="loginCont cont">
+					<form action="log.php" method="post">
+						<table align="center" border="0" cellspacing="0" cellpadding="10" >
+							<tr>
+								<td>用户名:</td>
+								<td>
+									<div class="inputBox">
+										<input type="text" name="UserName">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>密码:</td>
+								<td>
+									<div class="inputBox">
+										<input type="password" name="PassWord">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="submit" value="登录">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align:right;">
+									<a href="#" class="noLog">没有账户,赶快去注册!</a>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</li>
+			<li>
+				<div class="registerBox title">注册</div>
+				<div class="registerCont cont">
+					<form action="reg.php" method="post">
+						<table align="center" border="0" cellspacing="0" cellpadding="10" >
+							<tr>
+								<td>用户名:</td>
+								<td>
+									<div class="inputBox">
+										<input type="text" name="UserName">
+									</div>
+									
+								</td>
+							</tr>
+							<tr>
+								<td>密码:</td>
+								<td>
+									<div class="inputBox">
+										<input type="password" name="PassWord1">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>确认密码:</td>
+								<td>
+									<div class="inputBox">
+										<input type="password" name="PassWord2">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2">
+									<input type="submit">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="text-align:right;">
+									<a href="#" class="yesLog">已有账户,直接去登录!</a>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</li>
+		</ul>
+	</div>
+</body>
+<script>
+	var loginBox = document.querySelector(".loginBox")
+	var loginCont = document.querySelector(".loginCont")
+	var registerBox = document.querySelector(".registerBox")
+	var registerCont = document.querySelector(".registerCont")
+	var noLog = document.querySelector(".noLog")
+	var yesLog = document.querySelector(".yesLog")
+
+	noLog.onclick = function(){
+		registerBox.style = 'background:#f00;color:#000;'
+		loginBox.style = 'background:#333;color:#fff;'
+		loginCont.style = "display:none;"
+		registerCont.style = "display:block;"
+	}
+	yesLog.onclick = function(){
+		loginBox.style = 'background:#f00;color:#000;'
+		registerBox.style = 'background:#333;color:#fff;'
+		loginCont.style = "display:block;"
+		registerCont.style = "display:none;"
+	}
+	loginBox.onclick = function(){
+		this.style = 'background:#f00;color:#000;'
+		registerBox.style = 'background:#333;color:#fff;'
+		loginCont.style = "display:block;"
+		registerCont.style = "display:none;"
+	}
+	registerBox.onclick = function(){
+		this.style = 'background:#f00;color:#000;'
+		loginBox.style = 'background:#333;color:#fff;'
+		registerCont.style = "display:block;"
+		loginCont.style = "display:none;"
+	}
+</script>
+</html>

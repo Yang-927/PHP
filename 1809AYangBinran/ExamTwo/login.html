@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<style>
+		th,td{
+			text-align:center;
+			padding:10px;
+		}
+		input{
+			background:none;
+			border:none;
+			outline:none;
+			padding:0;
+			color:#fff;
+		}
+		.inputBox{
+			width:250px;
+			height:30px;
+			background: #333;
+			border:1px solid #333;
+			border-radius:3px;
+			overflow:hidden;
+		}
+		.inputBox>input{
+			width:240px;
+			height:30px;
+			padding-left:10px;
+		}
+		input[type='submit']{
+			width:60px;
+			height:30px;
+			background: #333;
+			color:#fff;
+		}
+	</style>
+</head>
+<body>
+	<form action="login.php" method="POST">
+		<table width="400" align="center" cellspacing="0" >
+			<thead>
+				<th colspan="2">用户登录</th>
+			</thead>
+			<tr>
+				<td>用户名：</td>
+				<td>
+					<div class="inputBox">
+						<input type="text" name="user_name">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>密码：</td>
+				<td>
+					<div class="inputBox">
+						<input type="password" name="password">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div class="btnBox">
+						<input type="submit">
+					</div>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

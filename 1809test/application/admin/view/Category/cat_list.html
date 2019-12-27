@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <base href="__PUBLIC__/static/" />
+<title>SHOP 管理中心 - 商品分类 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="/admin/Category/cat_add">添加分类</a></span>
+<span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品分类 </span>
+<div style="clear:both"></div>
+</h1>
+
+<form method="post" action="" name="listForm">
+<!-- start ad position list -->
+	<div class="list-div" id="listDiv">
+		<table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+			<tbody>
+				<tr>
+					<th>分类名称</th>
+					<th>商品数量</th>
+					<th>是否显示</th>
+					<th>排序</th>
+					<th>操作</th>
+				</tr>
+        {foreach $data as $v}
+				<tr align="center" class="0" id="0_1">
+					<td align="left" class="first-cell">
+						<span>
+              {$v.cat_name}
+            </span>
+					 </td>
+					<td width="10%">{$v.goods_num}</td>
+					<td width="10%">
+            {if condition="$v.is_show==1"}
+            <img src="images/yes.gif">
+            {else/}
+            <img src="images/no.gif">
+            {/if}
+          </td>
+					<td width="10%" align="right">
+            <span>{$v.sort}</span>
+          </td>
+					<td width="24%" align="center">
+						<a href="/admin/Category/cat_upd?id={$v.id}">编辑</a> |
+						<a href="/admin/Category/cat_del?id={$v.id}" title="移除">移除</a>
+					</td>
+				</tr>
+        {/foreach}
+	</tbody>
+  </table>
+</div>
+</form>
+
+  </table>
+</div>
+</form>
+
+
+<div id="footer">版权所有</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		input{
+			outline:none;
+			border:none;
+			width:98%;
+			height:100%;
+			padding:0;
+			padding-left:2%;
+			display:block;
+		}
+		.inputBox{
+			width: 60px;
+			height:20px;
+			border:1px solid #333;
+
+		}
+	</style>
+</head>
+<body>
+	<form action="counter.php" method="get">
+		<table align="center" border="0" cellspacing="0" cellpadding="10px">
+			<tr>
+				<td>
+					<div class="inputBox">
+						<input type="number" name="num1">
+					</div>
+				</td>
+				<td>
+					<select name="symbol">
+						<option value="+"> + </option>
+						<option value="-"> - </option>
+						<option value="*"> × </option>
+						<option value="/"> ÷ </option>
+					</select>
+				</td>
+				<td>
+					<div class="inputBox">
+						<input type="number" name="num2">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<input type="submit" value="计算">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

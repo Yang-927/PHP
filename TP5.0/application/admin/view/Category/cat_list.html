@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>SHOP 管理中心 - 商品分类 </title>
+<base href="__PUBLIC__/static/" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="styles/general.css" rel="stylesheet" type="text/css" />
+<link href="styles/main.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="/admin/Category/cat_add">添加分类</a></span>
+<span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 商品分类 </span>
+<div style="clear:both"></div>
+</h1>
+
+<form method="post" action="" name="listForm">
+<!-- start ad position list -->
+	<div class="list-div" id="listDiv">
+		<table width="100%" cellspacing="1" cellpadding="2" id="list-table">
+			<tbody>
+				<tr>
+					<th>分类名称</th>
+					<th>商品数量</th>
+					<th>是否显示</th>
+					<th>排序</th>
+					<th>操作</th>
+				</tr>
+                {foreach $data as $v}
+    				<tr align="center" class="0" id="0_1">
+    					<td align="left" class="first-cell">
+    						<img src="images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:0em" onclick="rowClicked(this)">
+    						<span><a href="goods.php?act=list&amp;cat_id=1">{$v.cat_name}</a></span>
+    					 </td>
+    					<td width="10%">{$v.measure_unit}</td>
+    					<td width="10%"><img class="is_show" ip="{$v.id}" src="images/{if condition='$v.is_show==1'}yes{else/}no{/if}.gif"></td>
+    					<td width="10%" align="right"><span title="点击修改内容" style="">{$v.sort_order}</span></td>
+    					<td width="24%" align="center">
+    						<a href="/admin/Category/cat_edit?ip={$v.id}">编辑</a> |
+    						<a class="delBtn" href="javascript:;" ip="{$v.id}" is_show="{$v.is_show}" title="移除">移除</a>
+    					</td>
+    				</tr>
+                {/foreach}
+	</tbody>
+  </table>
+</div>
+</form>
+
+  </table>
+</div>
+</form>
+
+
+<div id="footer">版权所有</div>
+</div>
+
+</body>
+<script src="js/jQuery-3.4.0.js"></script>
+<script>
+    $(".is_show").click(function(){
+        var ip = $(this).attr('ip');
+        $.ajax({
+            url:'/admin/Category/is_show',
+            type:'POST',
+            dataType:'json',
+            data:{ip},
+            success:function(res){
+                location.href = '/admin/Category/cat_list'
+                alert(res.error_msg)
+            }
+        })
+    })
+
+    $('.delBtn').click(function(){
+        var ip = $(this).attr('ip')
+        var is_show = $(this).attr('is_show')
+
+        $.ajax({
+            url:'/admin/Category/cat_del',
+            //             模块  控制器 方法
+            type:'post',
+            dataType:'json',
+            data:{
+                "ip":ip,
+                "is_show":is_show
+            },
+            success:(res)=>{
+                if (res.error_code == 1) {
+                    alert(res.error_msg)
+                }else{
+                    alert(res.error_msg)
+                    // $(".delBtn[ip="+ip+"]").parents('tr').remove();
+                    $(this).parents('tr').remove();
+                }
+            },
+            error:function(){
+                
+            }
+        })
+    })
+</script>
+</html>
